@@ -1,0 +1,15 @@
+venv/
+.vscode/
+__pycache__/
+configs/
+secrets.yaml
+.idea
+cache/*
+*.csv
+/dist/
+.env.local
+.caches/
+app.properties
+*.egg-info/
+/build/
+.python-version
