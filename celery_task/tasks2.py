@@ -6,7 +6,7 @@ import time
 # def debug_task(self):
 #     print(f'Request: {self.request!r}')
 
-@shared_task
+@shared_task()
 def add(x, y):
     return x + y
 

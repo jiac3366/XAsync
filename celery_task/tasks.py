@@ -1,5 +1,6 @@
 from celery import shared_task
 import time
+from app_one.models import Person
 
 
 # @app.task(bind=True)
@@ -21,3 +22,9 @@ def xsum(self, numbers):
     print(self.priority)
     time.sleep(10)
     return sum(numbers)
+
+
+@shared_task
+def person():
+    obj = Person.objects.create(first_name='chase', last_name='chen')
+    obj.save()
