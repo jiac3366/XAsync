@@ -1,9 +1,10 @@
 import os
-from celery_task import settings
+# from celery_task import settings
+from celery_system import settings
 from celery import Celery
 
 # Set the default Django settings module for the 'celery' program.
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'celery_test.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'celery_system.settings')
 
 app = Celery('chase_celery1')
 

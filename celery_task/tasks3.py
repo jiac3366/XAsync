@@ -1,10 +1,6 @@
 from celery import shared_task
-import time
+from app_one.serializer import PersonSerializer
 
-
-# @app.task(bind=True)
-# def debug_task(self):
-#     print(f'Request: {self.request!r}')
 
 @shared_task
 def add(x, y):
@@ -12,11 +8,9 @@ def add(x, y):
 
 
 @shared_task
-def mul(x, y):
-    return x * y
-
-
-@shared_task
-def xsum(numbers):
-    time.sleep(2)
-    return sum(numbers)
+def test_serializer():
+    data = {"first_name": "chase2", "last_name": "chen2"}
+    ser = PersonSerializer(data=data)
+    ser.is_valid(raise_exception=True)
+    ser.save()
+    print(ser.data)
