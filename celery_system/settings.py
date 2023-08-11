@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'app_one',
-    'simpleui',
+    # 'simpleui',
     'django_celery_beat',
     'celery_task',
     'django.contrib.admin',
@@ -124,11 +124,12 @@ STATIC_URL = '/static/'
 # DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
+MONGO_URL = "mongodb://root:123456@127.0.0.1:27077"
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'mock',
-        "CLIENT": {"host": "mongodb://root:123456@127.0.0.1:27077"},
+        "CLIENT": {"host": MONGO_URL},
     }
 }
 
@@ -145,3 +146,9 @@ TASK_PACKAGES = [
     'celery_task.tasks2',
     'celery_task.tasks3',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}

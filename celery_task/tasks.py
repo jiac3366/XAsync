@@ -1,6 +1,8 @@
 from celery import shared_task
 import time
-from app_one.models import Person
+from celery_system.settings import MONGO_URL
+from app_one.serializer import PersonSerializer
+from pymongo import MongoClient
 
 
 # @app.task(bind=True)
@@ -24,7 +26,31 @@ def xsum(self, numbers):
     return sum(numbers)
 
 
+
+
+
 @shared_task
-def person():
-    obj = Person.objects.create(first_name='chase', last_name='chen')
-    obj.save()
+def save_ORM():
+    data_one = data = {
+        'first_name': 'chase',
+        'last_name': 'chase',
+        'age': 25,
+        'school': 'school1',
+    }
+    ser = PersonSerializer(data=data_one)
+    ser.is_valid()
+    ser.save()
+
+
+@shared_task
+def save_pymongo():
+    data_one = data = {
+        'first_name': 'chase',
+        'last_name': 'chase',
+        'age': 25,
+        'school': 'school1',
+    }
+    with MongoClient(MONGO_URL) as cli:
+        clc = cli['mock'].get_collection('app_one_person')
+        res = clc.insert_one(data_one)
+        print(res)
