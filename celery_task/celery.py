@@ -1,5 +1,4 @@
 import os
-# from celery_task import settings
 from celery_system import settings
 from celery import Celery
 
