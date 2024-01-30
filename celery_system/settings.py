@@ -144,7 +144,7 @@ CELERY_RESULT_BACKEND = ""
 TASK_PACKAGES = [
     'celery_task.tasks',
     'celery_task.tasks2',
-    'celery_task.tasks3',
+    'celery_task.fund_transfer',
 ]
 
 REST_FRAMEWORK = {

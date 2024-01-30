@@ -1,4 +1,4 @@
-from celery.signals import after_task_publish
+from celery.signals import after_task_publish, celeryd_init
 
 
 @after_task_publish.connect
@@ -9,3 +9,8 @@ def task_sent_handler(sender=None, headers=None, body=None, **kwargs):
     print('after_task_publish for task id {info[id]}'.format(
         info=info,
     ))
+
+
+@celeryd_init.connect
+def celeryd_init(sender=None, conf=None, **kwargs):
+    print(f'celeryd_init: sender={sender}')
