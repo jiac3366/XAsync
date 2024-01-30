@@ -31,48 +31,15 @@ from kombu import Queue
 # )
 
 app.conf.task_routes = {
-    'celery_task.fund_transfer.tasks.*': {'queue': 'fund_transfer'},  # 指定'routing_key': 'fund_transfer11' 无效
+    'celery_task.fund_transfer.tasks.*': {'queue': 'fund_transfer'},
     'celery_task.tasks.*': {'queue': 'celery'},
 }
 
 
-# app.conf.broker_transport_options = {
-#     'priority_steps': list(range(1, 4)),
-#     'sep': ':',
-#     'queue_order_strategy': 'priority',
-# }
-# app.conf.worker_prefetch_multiplier = 1
+app.conf.broker_transport_options = {
+    'priority_steps': list(range(1, 4)),
+    'sep': ':',
+    'queue_order_strategy': 'priority',
+}
+app.conf.worker_prefetch_multiplier = 1
 
-
-# from kombu import Queue
-#
-# # 优先级队列方案
-# app.conf.task_queues = (
-#     Queue('default', routing_key='task.#'),
-#     Queue('feed_tasks', routing_key='feed.#'),
-# )
-
-# 定义队列的routing key
-# 重写一下 任务对象的代码  routing_key
-#
-
-# from kombu import Exchange, Queue, binding
-# from celery.schedules import crontab
-#
-# #
-# # # app.conf.task_queues == CELERY_QUEUES
-# app.conf.task_queues = (
-#     Queue('celery:1', routing_key="high"),
-#     Queue('celery:2', routing_key="default"),
-#     Queue('celery:3', routing_key="low"),
-# )
-# app.conf.task_default_routing_key = 'default'
-# # app.conf.task_default_queue = 'default'
-# # app.conf.task_default_exchange = 'default'
-#
-# app.conf.beat_schedule = {
-#     'test-task': {
-#         'task': 'celery_task.tasks.xsum',
-#         'schedule': crontab(minute='*/1')
-#     },
-# }
