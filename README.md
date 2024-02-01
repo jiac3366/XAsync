@@ -1,10 +1,11 @@
-# Celery System Demo
+# Celery System
 
 
 ### Run command
     
 - #### Celery Worker
     - window: celery -A celery_task worker -l INFO -P eventlet
+    - window: celery -A celery_task worker -l INFO -P eventlet -Q fund_transfer -c 1
     - linux: celery -A celery_task worker -l INFO
 
 - #### Celery Client Send Task
@@ -19,11 +20,13 @@
   
   from celery_task.fund_transfer.tasks import fund_transfer_send
   fund_transfer_send.delay(1, 4)
-  
+
+- #### Period Task Saved in Backend
+  celery -A celery_task beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
 
 
 
-#### Stack
+### Lib Version
 - python=3.8.10
 - Django==3.2.15
 - djongo==1.3.6

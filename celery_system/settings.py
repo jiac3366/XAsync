@@ -74,12 +74,12 @@ WSGI_APPLICATION = 'celery_system.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 # Password validation
@@ -125,13 +125,13 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
 MONGO_URL = "mongodb://root:123456@127.0.0.1:27077"
-DATABASES = {
-    'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'mock',
-        "CLIENT": {"host": MONGO_URL},
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'NAME': 'mock',
+#         "CLIENT": {"host": MONGO_URL},
+#     }
+# }
 
 CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
 CELERY_RESULT_BACKEND = ""

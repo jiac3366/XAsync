@@ -30,8 +30,10 @@ from kombu import Queue
 #     Queue('fund_transfer', routing_key='fund_transfer'),
 # )
 
+# queue只能指定的是队列名，例如：celery，而非celery:1
+# task_routes的key匹配的是shared_task中的name
 app.conf.task_routes = {
-    'celery_task.fund_transfer.tasks.*': {'queue': 'fund_transfer'},
+    'fund_transfer.*': {'queue': 'fund_transfer'},
     'celery_task.tasks.*': {'queue': 'celery'},
 }
 

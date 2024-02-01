@@ -3,7 +3,7 @@ import time
 
 
 @shared_task(bind=True)
-def tasks_sleep(self, priority: int):
+def tasks_sleep(self, priority: int = 1):
     num = 20
     for i in range(num):
         print(f"tasks_sleep params priority:{priority}, {i}")
