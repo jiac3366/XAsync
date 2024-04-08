@@ -29,8 +29,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'app_one',
-    # 'simpleui',
     'django_celery_beat',
     'celery_task',
     'django.contrib.admin',
